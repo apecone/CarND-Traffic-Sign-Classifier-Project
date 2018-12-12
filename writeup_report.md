@@ -25,7 +25,7 @@ The goals / steps of this project are the following:
 [image6]: ./examples/german_sign_3.jpg "Traffic Sign 3"
 [image7]: ./examples/german_sign_4.jpg "Traffic Sign 4"
 [image8]: ./examples/german_sign_5.jpg "Traffic Sign 5"
-[image8]: ./examples/german_sign_6.jpg "Traffic Sign 6"
+[image9]: ./examples/german_sign_6.jpg "Traffic Sign 6"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
