@@ -124,7 +124,7 @@ Here are six German traffic signs that I found on the web:
 
 ![alt text][image4]
 
-All of these images were classified with nearly 100% accuracy.  A lot of this probably is because each image is cropped on the traffic sign.  If, however, the image had not been cropped, the model might not perform as well.  Also, each image is rather clear, so, it would be interesting to see how the model would perform on a set of blurry images especially since I never did any sort of blur augmentation in the training process.
+All of these images were classified with 100% accuracy.  A lot of this probably is because each image is cropped on the traffic sign.  If, however, the image had not been cropped, the model might not perform as well.  Also, each image is rather clear, so, it would be interesting to see how the model would perform on a set of blurry images especially since I never did any sort of blur augmentation in the training process.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
