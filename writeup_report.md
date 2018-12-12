@@ -20,12 +20,7 @@ The goals / steps of this project are the following:
 [image1]: ./examples/sample_images.png "Sample Images"
 [image2]: ./examples/bar_chart.png "Class Frequencies"
 [image3]: ./examples/MobileNet_Layer.png "MobileNet Layer"
-[image4]: ./examples/german_sign_1.jpg "Traffic Sign 1"
-[image5]: ./examples/german_sign_2.jpg "Traffic Sign 2"
-[image6]: ./examples/german_sign_3.jpg "Traffic Sign 3"
-[image7]: ./examples/german_sign_4.jpg "Traffic Sign 4"
-[image8]: ./examples/german_sign_5.jpg "Traffic Sign 5"
-[image9]: ./examples/german_sign_6.jpg "Traffic Sign 6"
+[image4]: ./examples/sign_predictions.png "Sign Predictions"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -127,8 +122,7 @@ The fact that both my Training and Validation are around the same and are both v
 
 Here are six German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8] ![alt text][image9]
+![alt text][image4]
 
 All of these images were classified with nearly 100% accuracy.  A lot of this probably is because each image is cropped on the traffic sign.  If, however, the image had not been cropped, the model might not perform as well.  Also, each image is rather clear, so, it would be interesting to see how the model would perform on a set of blurry images especially since I never did any sort of blur augmentation in the training process.
 
