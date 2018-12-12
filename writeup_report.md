@@ -69,7 +69,7 @@ Since I already knew I was going to use MobileNet CNN, I didn't think it was ext
 
 My final model utilized the MobileNet architecture.  The only changes I made was using a smaller input layer and a smaller output layer specific to my sign classification task.  Other than those changes, pretty much everything else was the same.
 
-Many CNNs typically have layers which contain a convolution, possibly a batch norm, and then a relu activation.  MobileNet, however, implements their layers using a 3x3 depthwise convolution, batch norm, relu, then a 1x1 convolution, followed by another batch norm and relu.  This particular sequence of functions (in particular the depthwise convolution and 1x1 convolution) has proven to help reduce the number of parameters while still enabling the network to learn very complex non-linear functions.  The batch normalization helps the model converge quickly but it also helps the model generalize well under conditions of covariate shift where the distribution of the data being tested on is different than the training set.
+Many CNNs typically have layers which contain a convolution, possibly a batch norm, and then a relu activation.  MobileNet, however, implements their layers using a depthwise convolutional layer that filters the input followed by a 1x1 convolutional layer that combines these filtered values into new features.  This particular sequence of functions (in particular the depthwise convolution and 1x1 convolution) has proven to help reduce the number of parameters and model latency while still enabling the network to learn very complex non-linear functions.  The batch normalization helps the model converge quickly but it also helps the model generalize well under conditions of covariate shift where the distribution of the data being tested on is different than the training set.
 
 | ![alt text][image3] |
 |:--:|
@@ -80,15 +80,24 @@ The architecture is diagramed below:
 | Type/Stride | Filter Shape | Input Size |
 |:--:|:--:|:--:|
 | Conv / s2 | 3 x 3 x 3 x 32 | 32 x 32 x 3 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 16 x 16 x 32 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 16 x 16 x 64 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 8 x 8 x 64 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 8 x 8 x 128 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 4 x 4 x 128 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 4 x 4 x 256 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 2 x 2 x 256 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 2 x 2 x 512 |
-| Conv / s2 | 3 x 3 x 3 x 32 | 1 x 1 x 1024 |
+| Conv / s2 | 3 x 3 x 32 dw | 16 x 16 x 32 |
+| Conv / s2 | 1 x 1 x 32 x 64 | 16 x 16 x 32 |
+| Conv / s2 | 3 x 3 x 64 dw | 16 x 16 x 64 |
+| Conv / s2 | 1 x 1 x 64 x 128 | 8 x 8 x 64 |
+| Conv / s2 | 3 x 3 x 128 dw | 8 x 8 x 128 |
+| Conv / s2 | 1 x 1 x 128 x 128 | 8 x 8 x 128 |
+| Conv / s2 | 3 x 3 x 128 dw | 8 x 8 x 128 |
+| Conv / s2 | 1 x 1 x 128 x 256 | 4 x 4 x 128 |
+| Conv / s2 | 3 x 3 x 256 dw | 4 x 4 x 256 |
+| Conv / s2 | 1 x 1 x 256 x 256 | 4 x 4 x 256 |
+| Conv / s2 | 3 x 3 x 256 dw | 4 x 4 x 256 |
+| Conv / s2 | 1 x 1 x 256 x 512 | 2 x 2 x 256 |
+| 5x Conv / s2 | 3 x 3 x 512 dw / 1 x 1 x 512 x 512 | 2 x 2 x 512 |
+| Conv / s2 | 3 x 3 x 512 dw | 2 x 2 x 512 |
+| Conv / s2 | 1 x 1 x 512 x 1024 | 2 x 2 x 512 |
+| Conv / s2 |  | 1 x 1 x 1024 |
+| Conv / s2 |  | 1 x 1 x 1024 |
+| Conv / s2 |  | 1 x 1 x 1024 |
 
 
 
