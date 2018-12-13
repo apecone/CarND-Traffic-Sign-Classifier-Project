@@ -67,7 +67,7 @@ Since I already knew I was going to use MobileNet CNN (https://arxiv.org/pdf/170
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-My final model utilized the MobileNet architecture.  The only changes I made was using a smaller input layer and a smaller output layer specific to my sign classification task.  Other than those changes, pretty much everything else was the same.
+My final model utilized the MobileNet architecture.  The only changes I made was using a smaller input layer and a smaller output layer specific to my sign classification task.  Other than those changes, pretty much everything else was the same as the original MobileNet paper.
 
 Many CNNs typically have layers which contain a convolution, possibly a batch norm, and then a relu activation.  MobileNet, however, implements their layers using a depthwise convolutional layer that filters the input followed by a 1x1 convolutional layer that combines these filtered values into new features.  This particular sequence of functions (in particular the depthwise convolution and 1x1 convolution) has proven to help reduce the number of parameters and model latency while still enabling the network to learn very complex non-linear functions.  The batch normalization helps the model converge quickly but it also helps the model generalize well under conditions of covariate shift where the distribution of the data being tested on is different than the training set.
 
