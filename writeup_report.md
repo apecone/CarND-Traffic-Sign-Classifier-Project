@@ -80,25 +80,26 @@ The architecture is diagramed below:
 | Type/Stride | Filter Shape | Input Size |
 |:--:|:--:|:--:|
 | Conv / s2 | 3 x 3 x 3 x 32 | 32 x 32 x 3 |
-| Conv / s2 | 3 x 3 x 32 dw | 16 x 16 x 32 |
-| Conv / s2 | 1 x 1 x 32 x 64 | 16 x 16 x 32 |
-| Conv / s2 | 3 x 3 x 64 dw | 16 x 16 x 64 |
-| Conv / s2 | 1 x 1 x 64 x 128 | 8 x 8 x 64 |
-| Conv / s2 | 3 x 3 x 128 dw | 8 x 8 x 128 |
-| Conv / s2 | 1 x 1 x 128 x 128 | 8 x 8 x 128 |
-| Conv / s2 | 3 x 3 x 128 dw | 8 x 8 x 128 |
-| Conv / s2 | 1 x 1 x 128 x 256 | 4 x 4 x 128 |
-| Conv / s2 | 3 x 3 x 256 dw | 4 x 4 x 256 |
-| Conv / s2 | 1 x 1 x 256 x 256 | 4 x 4 x 256 |
-| Conv / s2 | 3 x 3 x 256 dw | 4 x 4 x 256 |
-| Conv / s2 | 1 x 1 x 256 x 512 | 2 x 2 x 256 |
-| 5x Conv / s2 | 3 x 3 x 512 dw / 1 x 1 x 512 x 512 | 2 x 2 x 512 |
-| Conv / s2 | 3 x 3 x 512 dw | 2 x 2 x 512 |
-| Conv / s2 | 1 x 1 x 512 x 1024 | 2 x 2 x 512 |
-| Conv / s2 |  | 1 x 1 x 1024 |
-| Conv / s2 |  | 1 x 1 x 1024 |
-| Conv / s2 |  | 1 x 1 x 1024 |
-
+| Conv dw / s1 | 3 x 3 x 32 dw | 16 x 16 x 32 |
+| Conv / s1 | 1 x 1 x 32 x 64 | 16 x 16 x 32 |
+| Conv dw / s2 | 3 x 3 x 64 dw | 16 x 16 x 64 |
+| Conv / s1 | 1 x 1 x 64 x 128 | 8 x 8 x 64 |
+| Conv dw / s1 | 3 x 3 x 128 dw | 8 x 8 x 128 |
+| Conv / s1 | 1 x 1 x 128 x 128 | 8 x 8 x 128 |
+| Conv dw / s2 | 3 x 3 x 128 dw | 8 x 8 x 128 |
+| Conv / s1 | 1 x 1 x 128 x 256 | 4 x 4 x 128 |
+| Conv dw / s1 | 3 x 3 x 256 dw | 4 x 4 x 256 |
+| Conv / s1 | 1 x 1 x 256 x 256 | 4 x 4 x 256 |
+| Conv dw / s2 | 3 x 3 x 256 dw | 4 x 4 x 256 |
+| Conv / s1 | 1 x 1 x 256 x 512 | 2 x 2 x 256 |
+| 5x Conv dw & Conv / s1 & s1 | 3 x 3 x 512 dw / 1 x 1 x 512 x 512 | 2 x 2 x 512 |
+| Conv dw / s2 | 3 x 3 x 512 dw | 2 x 2 x 512 |
+| Conv / s1 | 1 x 1 x 512 x 1024 | 2 x 2 x 512 |
+| Conv dw / s2 | 3 x 3 x 1024 dw | 1 x 1 x 1024 |
+| Conv / s1 | 1 x 1 x 1024 x 1024 | 1 x 1 x 1024 |
+| Avg Pool / s1 | Pool 7 x 7 | 1 x 1 x 1024 |
+| FC / s1 | 1024 x 43 | 1 x 1 x 1024 |
+| Softmax / s1 | Clasifier | 1 x 1 x 43 |
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
